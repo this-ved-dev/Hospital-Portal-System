@@ -1,0 +1,37 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+<div class="card bg-dark text-white col-12">
+    <img src="{{url_for('static',filename='departments/emergency.jpg')}}" style="height:400px;filter:brightness(0.3);" class="card-img" alt="">
+  <div class="card-img-overlay">
+    <h1 class="card-title">Emergency Department</h1>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div>
+<div class="card bg-dark text-white col-12">
+    <img src="{{url_for('static',filename='departments/cardiology.jpg')}}" style="height:400px;filter:brightness(0.3);" class="card-img" alt="">
+  <div class="card-img-overlay">
+    <h1 class="card-title">Cardiology Department</h1>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div>
+<div class="card bg-dark text-white col-12">
+    <img src="{{url_for('static',filename='departments/oncology.jpg')}}" style="height:400px;filter:brightness(0.3);" class="card-img" alt="">
+  <div class="card-img-overlay">
+    <h1 class="card-title">Oncology Department</h1>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div>
+<div class="card bg-dark text-white col-12">
+    <img src="{{url_for('static',filename='departments/dentist.jpg')}}" style="height:400px;filter:brightness(0.3);" class="card-img" alt="">
+  <div class="card-img-overlay">
+    <h1 class="card-title">Dentistry Department</h1>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div>
+</div>
+{%endblock content%}
+

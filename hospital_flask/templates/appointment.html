@@ -1,0 +1,94 @@
+{% extends "layout.html" %} {% block content %}
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="white-box">
+      <div class="d-md-flex mb-3">
+        <h3 class="box-title mb-0">My Appointments</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table no-wrap">
+          <thead>
+            {%if current_user.user_type=='patient'%}  
+            <tr>
+              <th class="border-top-0">#</th>
+              <th class="border-top-0">Name of Doctor</th>
+              <th class="border-top-0">Phone No.</th>
+              <th class="border-top-0">Email</th>
+              <th class="border-top-0">Specialisation</th>
+              <th class="border-top-0">Date of Appointment</th>
+              <th class="border-top-0">Status</th>
+              <th class="border-top-0">Symptom</th>
+              <th class="border-top-0">Diagnosis</th>
+              <th class="border-top-0"></th>
+            </tr>
+            {%elif current_user.user_type=='doctor'%}
+            <tr>
+              <th class="border-top-0">#</th>
+              <th class="border-top-0">Name of Patient</th>
+              <th class="border-top-0">Phone No.</th>
+              <th class="border-top-0">Email</th>
+              <th class="border-top-0">Age</th>
+              <th class="border-top-0">Gender</th>
+              <th class="border-top-0">Date of Appointment</th>
+              <th class="border-top-0">Status</th>
+              <th class="border-top-0">Symptoms</th>
+              <th class="border-top-0">Diagnosis</th>
+              <th class="border-top-0"></th>
+            </tr>
+            {%endif%}
+          </thead>
+          <tbody>
+            {% for appointment in appointment%}
+            {%if current_user.user_type=='patient' and appointment.patient.id==current_user.id%}
+            <tr>
+              <td></td>
+              <td class="txt-oflo">{{appointment.doctor.username}}</td>
+              <td>{{appointment.doctor.phone}}</td>
+              <td class="txt-oflo">{{appointment.doctor.email}}</td>
+              <td>{{appointment.doctor.specialisation}}</td>
+              <td>{{appointment.date_appointed.strftime('%d %B, %Y')}}</td>
+              {% if appointment.status == 'CONSULTATION'%}
+              <td class="txt-oflo text-warning">{{appointment.status}}</td>
+              {% elif appointment.status == 'ON-GOING'%}
+              <td class="txt-oflo text-danger">{{appointment.status}}</td>
+              {%else%}
+              <td class="txt-oflo text-success">{{appointment.status}}</td>
+              {%endif%}
+              <td>{{appointment.symptom}}</td>
+              <td>{{appointment.diagnosis}}</span></td>
+              <td><a href="{{url_for('patient_edit',appointment_id=appointment.id)}}"><i class="fas fa-user-edit"></i></a></td>
+              <td>
+                <form action="{{url_for('patient_delete',appointment_id=appointment.id)}}" method="post">
+                <input class="btn btn-outline-danger float-end" type="submit" value="Delete" />
+                </form>                
+            </tr>
+            {%elif current_user.user_type=='doctor' and appointment.doctor.id==current_user.id%}
+            <tr>
+              <td></td>
+              <td class="txt-oflo">{{appointment.patient.username}}</td>
+              <td>{{appointment.patient.phone}}</td>
+              <td class="txt-oflo">{{appointment.patient.email}}</td>
+              <td>{{appointment.patient.age}}</td>
+              <td>{{appointment.patient.gender}}</td>
+              <td>{{appointment.date_appointed.strftime('%d %B, %Y')}}</td>
+              {% if appointment.status == 'CONSULTATION'%}
+              <td class="txt-oflo text-warning">{{appointment.status}}</td>
+              {% elif appointment.status == 'ON-GOING'%}
+              <td class="txt-oflo text-danger">{{appointment.status}}</td>
+              {%else%}
+              <td class="txt-oflo text-success">{{appointment.status}}</td>
+              {%endif%}
+              <td>{{appointment.symptom}}</td>
+              <td>{{appointment.diagnosis}}</span></td>
+              <td><a href="{{url_for('doctor_edit',appointment_id=appointment.id)}}"><i class="fas fa-user-edit"></i></a></td>
+            </tr>
+            {%endif%}
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

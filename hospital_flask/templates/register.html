@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% if title %}
+    <title>Hospital Management - {{title}}</title>
+    {% else %}
+    <title>Hospital Management</title>
+    {% endif %}
+    <!-- Favicon icon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{url_for('static',filename='Doctor Logo@4x.png')}}"
+    />
+    <!-- Custom CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    body {
+      background-color: #edf1f5;
+    }
+    .container {
+      background-color: #2f323e;
+    }
+
+    img {
+      width: 150px;
+    }
+  </style>
+  <body>
+    
+    <div class="container-fluid col-md-5">
+      <div class="row g-3 StyleBox">
+        <form class="row g-3" method="POST">
+          {{ form.hidden_tag() }}
+          <div class="text-center">
+            <img
+              class="img-fluid mx-auto d-block  mt-5"
+              src="{{url_for('static',filename='Doctor Logo@4x.png')}}"
+            />
+          </div>
+          <div class="col-md-6">
+            {{form.username.label(class='form-label')}}
+            {% if form.username.errors %}
+                {{form.username(class="form-control is-invalid")}}
+            {% else %}
+                {{form.username(class='form-control',placeholder='Enter Your Name')}}
+            {% endif %}
+          </div>
+          <div class="col-md-6">
+            {{form.email.label(class='form-label')}}
+            {% if form.email.errors %}
+                {{form.email(class="form-control is-invalid")}}
+            {% else %}
+                {{form.email(class='form-control',placeholder='Enter Your Email')}}
+            {% endif %}
+            
+          </div>
+          <div class="col-md-6">
+            {{form.password.label(class='form-label')}}
+            {% if form.password.errors %}
+                {{form.password(class="form-control is-invalid")}}
+            {% else %}
+                {{form.password(class='form-control')}}
+            {% endif %}
+            
+          </div>
+          <div class="col-md-6">
+            {{form.confirm_password.label(class='form-label')}}
+            {% if form.confirm_password.errors %}
+                {{form.confirm_password(class="form-control is-invalid")}}
+            {% else %}
+                {{form.confirm_password(class='form-control')}} 
+            {% endif %}            
+          </div>
+          <div class="col-12">
+            {{form.occupation.label(class='form-label')}}
+            {{form.occupation(class='form-control',placeholder='Doctor, Nurse, Surgeon, Intern . . .')}}
+          </div>
+          <div class="col-12">
+            {{form.specialisation.label(class='form-label')}}
+            {{form.specialisation(class='form-control')}}
+          </div>
+          <div class="col-md-4">
+            {{form.gender.label(class='form-label')}}
+            {{form.gender(class='form-select')}}
+          </div>
+          <div class="col-md-4">
+            {{form.phone.label(class='form-label')}}
+            {% if form.phone.errors %}
+                {{form.phone(class="form-control is-invalid")}}
+            {% else %}
+                {{form.phone(class='form-control')}}
+            {% endif %}  
+            
+          </div>
+          <div class="col-md-4">
+            {{form.image_file.label(class='form-label')}}
+            <span class="text-muted">(*not mandatory)</span>
+            {{form.image_file(class='form-control')}}
+          </div>
+          <div class="col-12">
+            {{form.submit(class='btn btn-primary')}}
+          </div>
+        </form>
+        <div class="border-top pt-3">
+          <small class="text-muted">
+                Not a Doctor? <a href="{{url_for('registerpatient')}}">Register as a Patient</a>
+            </small>
+            <br>
+            <small class="text-muted">
+                Already Have an Account? <a href="{{url_for('login')}}">Log In</a>
+            </small>
+        </div>
+      </div>
+    </div>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+      integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+      integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

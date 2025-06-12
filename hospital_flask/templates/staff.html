@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="white-box">
+      <div class="d-md-flex mb-3">
+        <h3 class="box-title mb-0">All Staff</h3>
+        {%if current_user.user_type=='patient'%}
+        <h3 class="box-title mb-2 text-muted">(Use this as a guide to book your appointments)</h5>
+        {%endif%}
+      </div>
+      <div class="table-responsive">
+        <table class="table no-wrap">
+          <thead>
+            <tr>
+              <th class="border-top-0">#</th>
+              <th class="border-top-0">Full Name</th>
+              <th class="border-top-0">Email</th>
+              <th class="border-top-0">Gender</th>
+              <th class="border-top-0">Phone No.</th>
+              <th class="border-top-0">Occupation</th>
+              <th class="border-top-0">Specialisation</th>              
+            </tr>
+          </thead>
+          <tbody>
+            {% for staff in staff%}
+            <tr>
+              <td>{{staff.id}}</td>
+              <td class="txt-oflo">{{staff.username}}</td>
+              <td>{{staff.email}}</td>
+              <td class="txt-oflo">{{staff.gender}}</td>
+              <td>{{staff.phone}}</td>
+              <td>{{staff.occupation}}</td>
+              <td>{{staff.specialisation}}</span></td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content%}

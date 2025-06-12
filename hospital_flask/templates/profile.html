@@ -1,0 +1,102 @@
+{% extends "layout.html" %} {% block content %}
+
+
+  <div class="row">
+    <!-- Left Card -->
+    <div class="col-lg-4 col-xlg-3 col-md-12">
+      <div class="card" style="width: 22rem">
+        <img class="card-img-top" src="{{image_file}}" alt="Profile Photo" />
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-alt"></i> Name: {{current_user.username}}</h5>
+          <h5 class="card-title"><i class="fas fa-envelope-square"></i> Email: {{current_user.email}}</h5>
+          <h5 class="card-title"><i class="fas fa-mobile-alt"></i> Phone No: {{current_user.phone}}</h5>
+          <h5 class="card-title"><i class="fas fa-venus-mars"></i> Gender: {{current_user.gender}}</h5>
+        </div>
+        {%if current_user.user_type=='doctor'%}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ current_user.occupation}}</li>
+          <li class="list-group-item">Specialisation: {{current_user.specialisation}}</li>
+        </ul>
+        {%endif%}
+      </div>
+    </div>
+    <!-- Right Update Form -->
+    <div class="col-lg-8 col-xlg-9 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="form-horizontal form-material" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group mb-4">
+              {{form.username.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {% if form.username.errors %}
+                {{form.username(class="form-control p-0 border-0 is-invalid")}}
+                {% else %}
+                {{form.username(class='form-control p-0 border-0')}}
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              {{form.email.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {% if form.email.errors %}
+                {{form.email(class="form-control p-0 border-0 is-invalid")}}
+                {% else %}
+                {{form.email(class='form-control p-0 border-0')}}
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              {{form.phone.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.phone(class='form-control p-0 border-0')}}
+              </div>
+            </div>
+            {%if current_user.user_type == 'doctor' %}
+            <div class="form-group mb-4">
+              {{form.occupation.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.occupation(class='form-control p-0 border-0')}}
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              {{form.specialisation.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.specialisation(class='form-control p-0 border-0')}}
+              </div>
+            </div>
+            {%endif%}
+            {% if current_user.user_type=='patient'%}
+            <div class="form-group mb-4">
+              {{form.age.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.age(class='form-control p-0 border-0')}}
+              </div>
+            </div>
+            {%endif%}
+            <div class="form-group mb-4">
+              {{form.gender.label(class='col-md-12 p-0')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.gender(class='form-select shadow-none p-0 border-0 form-control-line')}}
+              </div>
+            </div>
+            
+            <div class="form-group mb-4">
+              {{form.image_file.label(class='form-label')}}
+              <div class="col-md-12 border-bottom p-0">
+                {{form.image_file(class='form-control p-0 border-0')}}               
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <div class="col-sm-12">
+                {{form.submit(class='btn btn-success')}}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}
